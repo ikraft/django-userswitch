@@ -1,6 +1,6 @@
 Django UserSwitch
 =================
-A quick 'n' dirty Django app for switching between different users while testing
+A quick 'n' dirty Django app for switching between different users while testing.
 
 Installation
 -------------
@@ -12,8 +12,6 @@ To install the latest version::
 It can also be installed from PyPI with ``pip`` or ``easy_install``::
 
     pip install django-userswitch
-
-
     easy_install install django-userswitch
 
 Setup & Usage
@@ -47,9 +45,9 @@ Step 3: Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
     
         USERSWITCH_OPTIONS = {
             'css_class': '',       # CSS class to be added to the switcher widget. Default='userswitch'.
-            'css_inline': '',     # Inline css for the switcher widget, if any
+            'css_inline': '',      # Inline css for the switcher widget, if any
             'content_types': (),   # a tuple of content-type for which to render switcher widget. Default = ('text/html', 'application/xhtml+xml')
-            'auth_backend': '',   # Custom auth backend if any. Default = 'django.contrib.auth.backends.ModelBackend'
+            'auth_backend': '',    # Custom auth backend if any. Default = 'django.contrib.auth.backends.ModelBackend'
             'users': (),           # List of usernames(as strings) to be shown in the switcher widget. If its empty, all users are loaded.
         }
 
