@@ -1,0 +1,7 @@
+AUTHORS.rst
+README.rst
+setup.py
+userswitch/__init__.py
+userswitch/middleware.py
+userswitch/urls.py
+userswitch/views.py
