@@ -4,7 +4,7 @@ Django UserSwitch
 
 A quick 'n' dirty django app for switching between different users while testing.
 
-* "Quick and dirty". Just include the middleware and urls. That's it!
+* "Quick and dirty". Just include the middleware. That's it!
 * Provides a select box with a list of users.
 * User list can be defined in ``settings`` or all users are loaded.
 * Works only when ``settings.DEBUG`` is ``True``
@@ -44,16 +44,6 @@ Add ``userswitch`` middleware to the ``MIDDLEWARE_CLASSES`` in settings.py after
     ...
     'userswitch.middleware.UserSwitchMiddleware',
   )
-
-Add the following line to your root ``url.py``::
-
-    from django.conf import settings
-    ....
-
-    if settings.DEBUG:
-        urlpatterns += pattern('',
-            (r'^userswitch/', include('userswitch.urls'))
-        )
 
 
 Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::

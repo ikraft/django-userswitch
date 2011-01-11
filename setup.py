@@ -7,7 +7,7 @@ setup(
     license = "New BSD License",
     author = open('AUTHORS.rst').read(),
     author_email = "hello@ikraftsoft.com",
-    description = open('README.rst').read(),
+    description = "A quick 'n' dirty Django app for switching between different users while testing",
     url = "https://github.com/ikraftsoft/django-userswitch",
     include_package_data=True,
 )
