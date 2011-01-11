@@ -21,7 +21,7 @@ Installation
 
 To install the latest version:: 
 
-    pip install git+git://git://github.com/ikraftsoft/django-userswitch#egg=django-userswitch
+    pip install git+git://github.com/ikraftsoft/django-userswitch#egg=django-userswitch
 
 It can also be installed from PyPI with ``pip`` or ``easy_install``::
 
@@ -43,17 +43,17 @@ Add ``userswitch`` middleware to the ``MIDDLEWARE_CLASSES`` in settings.py after
     'django.contrib.messages.middleware.MessageMiddleware',
     ...
     'userswitch.middleware.UserSwitchMiddleware',
-)
+  )
 
 Add the following line to your root ``url.py``::
 
     from django.conf import settings
-....
+    ....
 
-if settings.DEBUG:
-    urlpatterns += pattern('',
-        (r'^userswitch/', include('userswitch.urls'))
-    )
+    if settings.DEBUG:
+        urlpatterns += pattern('',
+            (r'^userswitch/', include('userswitch.urls'))
+        )
 
 
 Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
