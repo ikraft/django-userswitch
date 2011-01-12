@@ -2,12 +2,16 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.http import HttpResponseRedirect
+from django.core.exceptions import MiddlewareNotUsed
 
 
 
 
 class UserSwitchMiddleware(object):
     def __init__(self):
+
+        if not settings.DEBUG:
+            raise MiddlewareNotUsed
 
         if not hasattr(settings, 'USERSWITCH_OPTIONS'):
             settings.USERSWITCH_OPTIONS = dict()
@@ -64,8 +68,7 @@ class UserSwitchMiddleware(object):
         """
         Appends user switcher widget just before the </body> tag in the response html
         """
-        if settings.DEBUG and response.status_code == 200:
-            if response['Content-Type'].split(';')[0].strip() in self.USERSWITCH_OPTIONS['content_types']:
+        if response.status_code == 200 and response['Content-Type'].split(';')[0].strip() in self.USERSWITCH_OPTIONS['content_types']:
                 
                 options_html = '<option value="0">Switch User</option>'
 
