@@ -10,7 +10,7 @@ from django.core.exceptions import MiddlewareNotUsed
 class UserSwitchMiddleware(object):
     def __init__(self):
 
-        if not settings.DEBUG:
+        if not settings.DEBUG and getattr(settings, "DEMO_MODE", False):
             raise MiddlewareNotUsed
 
         if not hasattr(settings, 'USERSWITCH_OPTIONS'):
@@ -22,6 +22,7 @@ class UserSwitchMiddleware(object):
             'css_inline': settings.USERSWITCH_OPTIONS.get('css_inline', 'position:absolute;top:5px;right:5px;z-index:999;'),
             'content_types': settings.USERSWITCH_OPTIONS.get('content_types', ('text/html', 'application/xhtml+xml')),
             'auth_backend': settings.USERSWITCH_OPTIONS.get('auth_backend', 'django.contrib.auth.backends.ModelBackend'),
+            'replace_text': settings.USERSWITCH_OPTIONS.get('replace_text', ''),
             'users': settings.USERSWITCH_OPTIONS.get('users', tuple()),
         }
 
@@ -81,7 +82,9 @@ class UserSwitchMiddleware(object):
                     options_html += '<option value="%s">%s</option>' % (user, user)
 
                 switch_widget = self.USERSWITCH_WIDGET.replace('<options>',options_html)
-
-                response.content = response.content.replace('</body>','%s</body>' % switch_widget)
+                if self.USERSWITCH_OPTIONS['replace_text']:
+                    response.content = response.content.replace(self.USERSWITCH_OPTIONS['replace_text'], switch_widget)
+                else:
+                    response.content = response.content.replace('</body>','%s</body>' % switch_widget)
 
         return response

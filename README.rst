@@ -53,6 +53,7 @@ Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
         'css_inline': '',      # Inline css for the switcher widget, if any
         'content_types': (),   # a tuple of content-type for which to render switcher widget. Default = ('text/html', 'application/xhtml+xml')
         'auth_backend': '',    # Custom auth backend if any. Default = 'django.contrib.auth.backends.ModelBackend'
+        'replace_text': '',    # Text to replace with the widget, default add to end "body" tag.
         'users': (),           # List of usernames(as strings) to be shown in the switcher widget. If its empty, all users are loaded.
     }
 
