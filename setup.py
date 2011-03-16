@@ -14,9 +14,6 @@ setup(
     long_description=open('README.rst').read(),
     url = "https://github.com/ikraftsoft/django-userswitch",
     download_url="https://github.com/ikraftsoft/django-userswitch/tarball/master",
-    install_requires=[
-        'Django>=1.2',
-    ],
     include_package_data=True,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
