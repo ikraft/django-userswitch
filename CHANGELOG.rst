@@ -1,3 +1,7 @@
+2011/01/25
+----------
+Added DEMO_MODE settings and replace on template.
+
 2011/01/12
 ----------
 
