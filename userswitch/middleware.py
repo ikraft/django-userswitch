@@ -10,11 +10,13 @@ from django.core.exceptions import MiddlewareNotUsed
 class UserSwitchMiddleware(object):
     def __init__(self):
 
-        if not settings.DEBUG and getattr(settings, "DEMO_MODE", False):
-            raise MiddlewareNotUsed
-
         if not hasattr(settings, 'USERSWITCH_OPTIONS'):
             settings.USERSWITCH_OPTIONS = dict()
+
+        if settings.USERSWITCH_OPTIONS.get('force_on',False):
+            pass
+        elif getattr(settings, "DEMO_MODE", False) or not settings.DEBUG:
+            raise MiddlewareNotUsed
 
         # Load defaults for missing settings
         self.USERSWITCH_OPTIONS = {
@@ -26,7 +28,7 @@ class UserSwitchMiddleware(object):
             'users': settings.USERSWITCH_OPTIONS.get('users', tuple()),
         }
 
-
+        
         # HTML for the widget
         self.USERSWITCH_WIDGET = """
         <div class="%(css_class)s" style="%(css_inline)s">

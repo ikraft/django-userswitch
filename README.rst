@@ -55,6 +55,7 @@ Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
         'auth_backend': '',    # Custom auth backend if any. Default = 'django.contrib.auth.backends.ModelBackend'
         'replace_text': '',    # Text to replace with the widget, default add to end "body" tag.
         'users': (),           # List of usernames(as strings) to be shown in the switcher widget. If its empty, all users are loaded.
+        'force_on': False,     # Turns on USERSWITCH even if DEBUG = False
     }
 
 
