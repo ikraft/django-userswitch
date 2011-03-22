@@ -46,7 +46,6 @@ class UserSwitchMiddleware(object):
         #Check if a user switch was requested by using a GET argument. If not, proceed to normal view.
         username = request.GET.get('userswitch_username',None)
         if username:
-            user = User.objects.get(username=username)
             # If the requested user in not found then this throws an expcetion.
             # It is not a bug, it is intentional. If the user does not exist in the DB,
             # it is a good idea to show that than to have the developer wondering why
