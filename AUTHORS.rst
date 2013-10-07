@@ -1,7 +1,7 @@
 AUTHORS
 =======
 
-Maintainer 
+Maintainer
 ----------
 Owail Lone <owais.lone@ikraftsoft.com>
 
