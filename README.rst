@@ -13,7 +13,7 @@ A quick 'n' dirty django app for switching between different users while testing
 Requirements
 ------------
 
-Django 1.2 
+>= Django 1.2
 
 ------------
 Installation
@@ -61,8 +61,8 @@ Optionally you can add ``USERSWITCH_OPTIONS`` dict to the settings.py::
 
 Note: default value of ``css_inline`` option provides some basic absolute 
 positioning. To change those either specify ``css_inline`` option
-manually or override ``position``, ``top``, ``right`` in the class
+manually or override ``position``, ``top``, ``right``, ``z-index`` in the class
 specified in ``css_class`` with ``!important``.
-    
+
 
 That's All!
