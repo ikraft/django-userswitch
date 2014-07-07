@@ -36,7 +36,7 @@ class UserSwitchMiddleware(object):
         # HTML for the widget
         self.USERSWITCH_WIDGET = """
         <div class="%(css_class)s" style="%(css_inline)s">
-        <select onChange="var username = options[selectedIndex].value; document.location.href = '/?userswitch_username='+username">
+        <select onChange="var username = options[selectedIndex].value; document.location.href = '/?userswitch_username=' + encodeURIComponent(username);">
             <options>
         </select>
         </div>
