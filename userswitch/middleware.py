@@ -42,19 +42,22 @@ class UserSwitchMiddleware(object):
         </div>
         """ % self.USERSWITCH_OPTIONS
 
-
     def process_request(self, request):
         """
         Logout current user and login the user specified in the username.
         """
         #Check if a user switch was requested by using a GET argument. If not, proceed to normal view.
-        username = request.GET.get('userswitch_username',None)
+        username = request.GET.get('userswitch_username', None)
         if username:
-            # If the requested user in not found then this throws an expcetion.
+            # If the requested user in not found then this throws an exception.
             # It is not a bug, it is intentional. If the user does not exist in the DB,
             # it is a good idea to show that than to have the developer wondering why
             # the user is not switching.
-            user = User.objects.get(username=username)
+            try:
+                # First, try with customizable User model in Django 1.5 an up.
+                user = User.objects.get(**{User.USERNAME_FIELD: username})
+            except AttributeError:
+                user = User.objects.get(username=username)
 
             # user.backend is needed for the the auth.login to work properly
             user.backend = self.USERSWITCH_OPTIONS['auth_backend']
@@ -67,8 +70,6 @@ class UserSwitchMiddleware(object):
                 return HttpResponseRedirect(request.META['HTTP_REFERER'])
             else:
                 return HttpResponseRedirect('/')
-
-
 
     def process_response(self, request, response):
         """
